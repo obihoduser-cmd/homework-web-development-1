@@ -9,6 +9,45 @@
 
 Цель работы: настроить виртуальное пространство. Разработать контроллер приложения и организовать маршруты
 
+Код WebSite.urls
+```
+from django.contrib import admin
+from django.urls import path, include
+from news.views import *
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('news/', include('news.urls')),
+]
+```
+
+<br>
+Код news.views
+```
+from django.shortcuts import render
+from django.http import HttpResponse
+# Create your views here.
+
+def index(request):
+    print(request)
+    return HttpResponse('Hello World')
+
+def test(request):
+    return HttpResponse('<h1>Тестовая страница</h1>')
+```
+<br>
+Код news.urls
+```
+from django.urls import path
+
+from .views import *
+
+urlpatterns = [
+    path('', index),
+    path('test/', test)
+]
+```
+
 <br><br><img width="654" height="68" alt="image" src="https://github.com/user-attachments/assets/0a633483-be4a-4154-8093-c9643b0b7f3b" />
 <br>Рисунок 1 - Создание виртуального рабочего стола
 
